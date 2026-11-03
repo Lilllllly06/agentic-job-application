@@ -11,15 +11,16 @@ import {
   ChevronDown,
   CircleHelp,
   ClipboardCheck,
+  Compass,
   Copy,
   Download,
   ExternalLink,
   FileCheck2,
   FilePlus2,
+  FilePenLine,
   FileText,
   FolderOpen,
   LayoutDashboard,
-  Leaf,
   ListFilter,
   LockKeyhole,
   MoreHorizontal,
@@ -74,7 +75,7 @@ import {
 } from "./components/ui";
 const navItems: { id: View; label: string; icon: typeof LayoutDashboard }[] = [
   { id: "overview", label: "Overview", icon: LayoutDashboard },
-  { id: "tailor", label: "Tailor application", icon: Sparkles },
+  { id: "tailor", label: "Tailor application", icon: FilePenLine },
   { id: "applications", label: "Applications", icon: BriefcaseBusiness },
   { id: "resumes", label: "Resume library", icon: FolderOpen },
   { id: "preferences", label: "Preferences", icon: Settings2 },
@@ -487,7 +488,7 @@ function App() {
           aria-label="Career Agent home"
         >
           <span className="brand-mark">
-            <Leaf size={22} strokeWidth={1.6} />
+            <Compass size={22} strokeWidth={1.7} />
           </span>
           <span>
             career<span className="brand-light">agent</span>
@@ -650,7 +651,7 @@ function App() {
                   <div className="paper-card">
                     <span className="paper-top">
                       <span className="paper-logo">
-                        <Leaf size={18} />
+                        <Compass size={18} />
                       </span>
                       <span>YOUR NEXT OPPORTUNITY</span>
                       <MoreHorizontal size={17} />
@@ -750,7 +751,7 @@ function App() {
                     }}
                   />
                   <div className="direction-footer">
-                    <Leaf size={16} />
+                    <Compass size={16} />
                     <p>
                       Progress is a practice.
                       <br />
@@ -1917,7 +1918,7 @@ function App() {
                         </span>
                       </li>
                       <li>
-                        <Sparkles size={17} />
+                        <FilePenLine size={17} />
                         <span>
                           <strong>Connect your experience</strong>
                           <p>
@@ -1990,7 +1991,7 @@ function App() {
           )}
           <footer className="workspace-footer">
             <span>
-              <Leaf size={13} />A little direction. A next step.
+              <Compass size={13} />A little direction. A next step.
             </span>
             <span>Built around your experience.</span>
           </footer>
