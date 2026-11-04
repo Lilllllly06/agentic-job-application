@@ -1,0 +1,80 @@
+[
+  {
+    "frame": null,
+    "seconds": 3,
+    "title": "Career Agent",
+    "caption": "A private workspace for your next chapter."
+  },
+  {
+    "frame": "01-overview.jpg",
+    "seconds": 5,
+    "title": "Your search, in one calm workspace",
+    "caption": "See active opportunities, conversations, and upcoming deadlines at a glance."
+  },
+  {
+    "frame": "02-resume-library.jpg",
+    "seconds": 5,
+    "title": "Start with the experience you already have",
+    "caption": "Import a .tex or .txt resume, or keep named versions of your working profile."
+  },
+  {
+    "frame": "03-opportunity.jpg",
+    "seconds": 6,
+    "title": "Connect your experience to an opportunity",
+    "caption": "Bring a job description and your original profile. Everything stays in this browser."
+  },
+  {
+    "frame": "04-analysis.jpg",
+    "seconds": 6,
+    "title": "Understand the fit, and the gaps",
+    "caption": "Compare detected skills and keywords. The score measures text overlap, not hiring odds."
+  },
+  {
+    "frame": "05-materials.jpg",
+    "seconds": 6,
+    "title": "A first draft. Then your own words.",
+    "caption": "Edit a resume draft and cover letter built from your existing experience."
+  },
+  {
+    "frame": "06-approved.jpg",
+    "seconds": 3,
+    "title": "Review the exact application package",
+    "caption": "Approval belongs to these materials, this profile, and this opportunity."
+  },
+  {
+    "frame": "07-review-required.jpg",
+    "seconds": 5,
+    "title": "A change means another review",
+    "caption": "Editing the resume automatically resets approval. Your next step stays deliberate."
+  },
+  {
+    "frame": "08-tracker.jpg",
+    "seconds": 4,
+    "title": "Keep the package with the opportunity",
+    "caption": "Save the reviewed materials to the tracker. Repeated saves update the same role."
+  },
+  {
+    "frame": "09-search.jpg",
+    "seconds": 4,
+    "title": "Find the detail you need",
+    "caption": "Search applications by company, role, contact, or notes; filter and sort the list."
+  },
+  {
+    "frame": "10-status-update.jpg",
+    "seconds": 5,
+    "title": "Turn a conversation into a next step",
+    "caption": "Update status, deadlines, contacts, and notes. The saved package stays close at hand."
+  },
+  {
+    "frame": "11-preferences.jpg",
+    "seconds": 5,
+    "title": "Your preferences. Your data.",
+    "caption": "Set your search direction and export a private backup. Nothing is submitted automatically."
+  },
+  {
+    "frame": "12-overview-close.jpg",
+    "seconds": 4,
+    "title": "A little direction. A next step.",
+    "caption": "Career Agent · React + TypeScript · Local-first · Reviewed by you"
+  }
+]
