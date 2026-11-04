@@ -1,67 +1,106 @@
-# Agentic Job Application
+# Career Agent
 
-Career Agent is a local-first job search, resume tailoring, and application workspace. The MVP helps a candidate compare a resume or profile against a job description, identify skill and keyword gaps, generate targeted resume bullets, draft outreach text, and track applications.
+**A little direction. A next step.**
 
-## Current MVP
+A local-first workspace for comparing your experience with a job description, tailoring application materials, and keeping every opportunity moving. Built with React, TypeScript, and Vite, with a cool dark interface that works on desktop and mobile.
 
-- Configure an autopilot control center for SWE/MLE target roles, locations, company ranking, job types, minimum score, and approval mode.
-- Paste a candidate profile or resume notes.
-- Import a private LaTeX resume file in the browser and parse it into profile text.
-- Save private resume versions in browser `localStorage`.
-- Paste a job description and target role.
-- Generate a fit score, required skill coverage, keyword gaps, one-page resume draft, focus plan, cover letter opener, outreach note, and interview prompts.
-- Generate a one-page cover letter draft whenever an application has a cover-letter option.
-- Save an opportunity into an application tracker with job link, contact, deadline, notes, status, and next action.
-- Persist tracked applications in browser `localStorage`.
-- Export a tailored resume draft as text for review.
+[![Checks](https://github.com/Lilllllly06/agentic-job-application/actions/workflows/ci.yml/badge.svg)](https://github.com/Lilllllly06/agentic-job-application/actions/workflows/ci.yml)
 
-## Autopilot Workflow
+[![Career Agent product walkthrough](docs/demo/preview.gif)](docs/demo/career-agent-demo.mp4)
 
-- Search every morning for SWE/MLE opportunities, ranking top tech and elite engineering companies first, then late-stage companies, then smaller companies and startups.
-- Shortlist jobs by company tier, role fit, location practicality, deadline, and resume match score.
-- Ask for approval before tailoring materials for a role.
-- Generate a one-page resume draft and one-page cover letter for approved roles.
-- Preview generated materials before any form filling.
-- Submit only after explicit approval for that exact role, resume, cover letter, and application package.
+[Watch the full walkthrough — MP4, 1 minute](docs/demo/career-agent-demo.mp4) · [Captions](docs/demo/career-agent-demo.vtt) · [Screenshots and demo notes](docs/demo/README.md)
 
-## Privacy Model
+The walkthrough uses a fictional candidate and illustrative opportunities in the isolated demo workspace.
 
-- Do not commit your real resume to GitHub.
-- Private local resume paths are ignored through `.gitignore`: `private/`, `resumes/private/`, `resume.tex`, `*.private.tex`, and `*.resume.tex`.
-- Browser imports stay in the browser unless you manually paste or commit content somewhere else.
-- Local private reference notes can live under `private/` and remain ignored by Git.
-- Tailoring should aggressively emphasize truthful evidence, but it should not fabricate employers, titles, degrees, dates, metrics, or projects.
-- Resume bullets should use Action + Task + Result and remain concise enough for one page.
-- Cover letters should stay one page and use Times New Roman or Calibri at 10-12 pt when exported into a document.
+## What you can do
 
-## Getting Started
+| Workspace              | What it does                                                                                                                  |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **Overview**           | See active applications, interviews, materials to review, offers, recent roles, and upcoming deadlines.                       |
+| **Tailor application** | Add a job description and profile, compare skills and keywords, and create editable resume and cover-letter drafts.           |
+| **Applications**       | Search, filter, and sort opportunities; update status, deadlines, contacts, next steps, and notes; export CSV.                |
+| **Resume library**     | Import `.tex` or `.txt` resumes, review extracted text, save named versions, and keep evidence connected to its source.       |
+| **Preferences**        | Save target roles and locations, set a shortlist threshold, open a LinkedIn search, and export or restore a workspace backup. |
+
+Working drafts and saved application packages persist in browser storage. Removing an application, resume version, or evidence item offers an undo action. Demo changes stay separate from your real workspace and disappear on refresh.
+
+## Try the workflow
+
+1. **Start with your experience.** Import a `.tex` or `.txt` resume, load a saved version, or paste your original experience into a profile.
+2. **Bring an opportunity.** Add the company, role, and job description. A posting link, contact, deadline, and notes are optional.
+3. **Compare your fit.** Review detected skills, missing evidence, and relevant keywords before creating drafts.
+4. **Make the materials yours.** Edit the resume and cover letter, use the outreach note and interview prompts, and review each claim.
+5. **Approve and track.** Approve the exact package, save it with the opportunity, and apply on the company's own website when ready.
+
+Use **Explore the demo** to try the workspace without adding personal information.
+
+## How analysis and approval work
+
+Analysis runs locally using a deterministic collection of skill patterns and keyword matches. With recognized job skills, the score combines **75% skill coverage and 25% keyword coverage**. When no skills are recognized, it uses keyword coverage alone. An empty profile or job description receives no score.
+
+The score measures text overlap; it is not a prediction of hiring success. Keywords and skill mentions still need review in context.
+
+Resume drafts select and rank sentences from the original profile. Cover letters use those source details and editable template text. The app does not invent education, employers, dates, metrics, or an applicant name. Supply your name and education explicitly if you want them included.
+
+Approval is tied to the company, role, posting URL, source profile, job description, candidate details, and edited materials. Changing those inputs requires a new review. Saving a package stores a snapshot with the opportunity; saving the same role again updates that record rather than creating a duplicate.
+
+**This version does not use a language model, run scheduled searches, scrape job boards, fill external forms, or submit applications.** Search preferences guide your manual workflow; they do not enable an unattended agent.
+
+## Run locally
+
+Use Node.js **22.12 or newer** and npm. Node 22 is used in CI.
 
 ```bash
-npm install
+git clone https://github.com/Lilllllly06/agentic-job-application.git
+cd agentic-job-application
+npm ci
 npm run dev
 ```
 
-Build for production:
+Open the local URL printed by Vite. No account, API key, or backend setup is needed.
 
 ```bash
-npm run build
+npm test          # Regression tests for analysis, storage, approvals, imports, and CSV
+npm run build     # TypeScript check and production bundle
+npm run preview   # Serve the production bundle locally
 ```
 
-## Project Structure
+GitHub Actions runs the tests and production build for pull requests and pushes to `main` and `codex/**` branches.
 
-- `src/App.tsx` - main React interface and application tracker.
-- `src/lib/analyzer.ts` - deterministic resume and job-description analysis engine.
-- `src/lib/latex.ts` - LaTeX resume parsing helper.
-- `src/data/sample.ts` - sample profile and job description.
-- `src/styles.css` - responsive operational UI styles.
+## Files, exports, and privacy
 
-## Roadmap
+- Resume imports accept `.tex` and `.txt` files up to **2 MB**. Review extracted LaTeX text before using it; PDF and Word import are not available yet.
+- Resume and cover-letter drafts can be copied or downloaded as text. **Print / save PDF** opens the browser print flow for the current materials; review pagination before exporting.
+- The application tracker exports CSV. **Preferences → Export backup** saves a JSON copy of applications, draft materials, resume versions, evidence, and preferences.
+- **Restore backup** validates the file before replacing the workspace and offers a current-workspace backup first. Keep exported backups private.
+- Application and resume content is stored in this browser's `localStorage`; it is not uploaded to an application server. Clearing site data or moving to a different browser does not carry it over. Export a backup before clearing data or switching devices.
+- The interface loads Google Fonts, with system-font fallbacks. Fonts are separate from resume and application content.
+- Git ignores private resume paths and local secrets, including `private/`, `resumes/private/`, `.env`, `resume.tex`, `*.private.tex`, and `*.resume.tex`. Do not commit your real resume or exported workspace backup.
 
-- Add job-board search ingestion and saved search criteria.
-- Add daily shortlist review and application queue automation.
-- Add resume-to-LaTeX export for tailored one-page resumes.
-- Add PDF resume parsing in the browser.
-- Add cover letter and recruiter-message variants with approval gates.
-- Add interview preparation cards from the job description.
-- Add backend persistence and authentication when the local MVP stabilizes.
-- Add optional LLM integration for higher-quality tailoring with explicit user review.
+Existing resume, application, evidence, and preference data from the earlier workspace format is migrated when available. The earlier global approval flag is not carried over to an unrelated package.
+
+## Project structure
+
+```text
+src/
+  App.tsx                 Workspace views and application workflows
+  components/ui.tsx       Shared controls, tables, dialogs, and feedback
+  data/sample.ts          Fictional demo profile and opportunities
+  lib/analyzer.ts         Skill matching, scoring, and source-based drafts
+  lib/latex.ts            Browser-side LaTeX extraction
+  lib/workspace.ts        Data models, storage migration, approval, and exports
+  styles.css              Dark theme tokens and responsive layouts
+tests/lib.test.mjs         Regression tests
+public/favicon.svg        Compass brand mark
+docs/demo/                Walkthrough video, captions, screenshots, and source frames
+scripts/render-demo.py    Optional demo renderer; not needed to run the app
+```
+
+## Next steps
+
+- PDF resume parsing with an extracted-text review step.
+- Optional language-model assistance with explicit review of generated claims.
+- Job-board ingestion and saved search results.
+- Optional authentication and synchronized storage across devices.
+
+These are planned additions, not connected services in the current app.
